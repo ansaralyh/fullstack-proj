@@ -10,7 +10,7 @@
 body{
     background: #dcdce6;
     background-image: url('./assets/Background.png');
-    background-position:center;
+    /* background-position:center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
