@@ -28,7 +28,7 @@ exports.verifyUser = async (req, res, next) => {
   }
 
 }
-
+ 
 exports.register = async (req, res) => {
   try {
     console.log('Api is working fine')
