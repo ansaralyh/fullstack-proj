@@ -1,28 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/profile.png';
 import styles from '../styles/Username.module.css';
 import { useFormik } from 'formik';
 import { usernameValidate } from '../helper/validate';
-import {Toaster, toaster} from 'react-hot-toast'
+import { Toaster, toaster } from 'react-hot-toast';
+import { useAuthStore } from '../store/store';
 
-export default function Username() {
+export default function Username() { // Renamed to start with an uppercase letter
+  const navigate = useNavigate();
+  const setUsername = useAuthStore(state => state.setUsername);
+  const username = useAuthStore(state => state.auth.username); // Assuming you're using this variable later
+
+  useEffect(() => {
+    console.log(username);
+  }, [username]);
+
+  const handleForm = () => {
+    console.log(setUsername(formik.values.username));
+  };
+
   const formik = useFormik({
     initialValues: {
       username: ''
     },
-    validate: usernameValidate,
-    validateOnBlur: false,
-    validateOnChange: false,
-    onSubmit: async (values) => {
-      console.log(values);
-    }
+    onSubmit: handleForm
   });
 
   return (
     <div className="container max-auto">
-
-<Toaster position='top-center' reverseOrder = {false}></Toaster>
+      <Toaster position='top-center' reverseOrder={false}></Toaster>
       <div className='flex justify-center items-center h-screen'>
         <div className={styles.glass}>
           <div className="title flex flex-col items-center">
